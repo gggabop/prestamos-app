@@ -1,0 +1,7 @@
+{
+  "name": "prestamos-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
