@@ -31,7 +31,11 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": ["src/theme/variables.scss",
+                      "src/global.scss",
+                      "node_modules/primeicons/primeicons.css",
+                      "node_modules/primeng/resources/themes/saga-orange/theme.css",
+                      "node_modules/primeng/resources/primeng.min.css"],
             "scripts": [],
             "aot": false,
             "vendorChunk": true,
