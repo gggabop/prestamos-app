@@ -1,4 +1,26 @@
-
-<ion-content>
-
-</ion-content>
+<div class="flex h-screen colorBGadminlogin">
+  <div class="w-full max-w-xs m-auto bg-yellow-100 rounded-xl p-5">
+        <header>
+          <img class=" mx-auto mb-5" src="/assets/img/logo.png" />
+        </header>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div>
+            <label class="block mb-2 colorBGadmin" for="username">Email</label>
+            <input class="transition duration-500 w-full p-2 mb-6 text-yellow-700 border-b-2 border-yellow-500 outline-none focus:bg-gray-300"
+            ype="text"
+            formControlName="email">
+          </div>
+          <div>
+            <label class="block mb-2 colorBGadmin" for="password">Contraseña</label>
+            <input class="transition duration-500 w-full p-2 mb-6 text-yellow-700 border-b-2 border-yellow-500 outline-none focus:bg-gray-300"
+            type="password"
+            formControlName="password">
+          </div>
+          <div class="grid justify-items-center items-center flex-wrap content-center">
+            <button type="submit" class="transition duration-500 my-4 w-5/6 self-auto p-8 bg-yellow-200 hover:bg-yellow-400 hover:text-yellow-800 group items-center rounded-md text-yellow-600 text-sm text-justify grid justify-items-center font-medium px-4 py-2">
+              Entrar
+            </button>
+          </div>
+        </form>
+      </div>
+  </div>

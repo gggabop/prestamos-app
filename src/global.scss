@@ -24,3 +24,16 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.colorBGadmin{
+  color: #AD8927;
+}
+.colorBGadminlogin{
+  background-color: #AD8927;
+}
+.w-fulled{
+  width: 165%;
+}

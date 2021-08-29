@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes, CanActivate } from '@angular/router';
+import { ValidarTokenGuard } from './guards/validar-token.guard';
 
 const routes: Routes = [
   {
@@ -7,12 +9,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
   {
-    path: '**',
-    redirectTo: ''
-  },
-  {
     path: 'dashboard',
-    loadChildren: () => import('./protected/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    loadChildren: () => import('./protected/dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    canActivate: [ ValidarTokenGuard ],
+    canLoad: [ValidarTokenGuard],
   },
 ];
 

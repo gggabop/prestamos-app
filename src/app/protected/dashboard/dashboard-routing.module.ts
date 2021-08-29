@@ -6,8 +6,19 @@ import { DashboardPage } from './dashboard.page';
 const routes: Routes = [
   {
     path: '',
-    component: DashboardPage
+    component: DashboardPage,
+    children:[
+      {
+        path: 'clientes',
+        loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesPageModule)
+      },
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
+
 ];
 
 @NgModule({
