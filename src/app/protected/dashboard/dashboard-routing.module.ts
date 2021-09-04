@@ -12,12 +12,21 @@ const routes: Routes = [
         path: 'clientes',
         loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesPageModule)
       },
+      {
+        path: 'pedidos',
+        loadChildren: () => import('./pedidos/pedidos.module').then(m => m.PedidosPageModule)
+      },
+      {
+        path: 'auditoria',
+        loadChildren: () => import('./auditoria/auditoria.module').then( m => m.AuditoriaPageModule)
+      }
     ]
   },
   {
     path: '**',
     redirectTo: ''
-  }
+  },
+
 
 ];
 

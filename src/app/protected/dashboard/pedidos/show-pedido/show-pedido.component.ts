@@ -1,19 +1,19 @@
 /* eslint-disable @angular-eslint/no-host-metadata-property */
-import { dashboardService } from './../../dashboard-service.service';
+import { dashboardService } from '../../dashboard-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { delay } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-show-cliente',
+  selector: 'app-show-pedido',
   host: {
     class:'w-full'
   },
-  templateUrl: './show-cliente.component.html',
-  styleUrls: ['./show-cliente.component.scss'],
+  templateUrl: './show-pedido.component.html',
+  styleUrls: ['./show-pedido.component.scss'],
 })
-export class ShowClienteComponent implements OnInit {
+export class ShowPedidoComponent implements OnInit {
 
 
   toast = Swal.mixin({
@@ -28,8 +28,8 @@ export class ShowClienteComponent implements OnInit {
     }
   });
 
+  public pedido = [];
   public cliente = [];
-  public prestamos = [];
   public montoPrestado;
   public dtOptions: DataTables.Settings = {};
   constructor(private rutaActiva: ActivatedRoute,
@@ -41,18 +41,15 @@ export class ShowClienteComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 2
     };
-     this.getCliente(this.rutaActiva.snapshot.params.id);
-     this.prestamos.forEach(prestamo => {
-        this.montoPrestado = prestamo.amount_rest_loan;
-        console.log( this.montoPrestado );
-     });
+     this.getPedido(this.rutaActiva.snapshot.params.id);
   }
 
-  getCliente(id){
-    this.dbService.get(id, 'customer')
+  getPedido(id){
+    this.dbService.get(id, 'cashorder')
     .subscribe(resp=>{
+      this.pedido = resp.pedido;
       this.cliente = resp.cliente;
-      this.prestamos = resp.prestamos;
+      console.log(resp);
     });
   }
   delete(){
@@ -68,7 +65,7 @@ export class ShowClienteComponent implements OnInit {
       confirmButtonText: 'Eliminar'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {this.dbService.delete(this.rutaActiva.snapshot.params.id, 'customer')
+      if (result.isConfirmed) {this.dbService.delete(this.rutaActiva.snapshot.params.id, 'cashorder')
       .subscribe(resp=>{
         if(resp.message==='Ok'){
           this.toast.fire({
@@ -80,9 +77,9 @@ export class ShowClienteComponent implements OnInit {
             'El registro ha sido eliminado',
             'success'
           );
-          this.router.navigateByUrl('/dashboard/clientes');
+          this.router.navigateByUrl('/dashboard/pedidos');
           delay(3000);
-          window.location.assign('/dashboard/clientes');
+          window.location.assign('/dashboard/pedidos');
         }
       });
       } else if (result.isDenied) {

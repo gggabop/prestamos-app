@@ -3,19 +3,19 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-clientes',
-  templateUrl: './clientes.page.html',
-  styleUrls: ['./clientes.page.scss'],
+  selector: 'app-pedidos',
+  templateUrl: './pedidos.page.html',
+  styleUrls: ['./pedidos.page.scss'],
 })
-export default class ClientesPage implements OnInit, OnDestroy {
+export default class PedidosPage implements OnInit, OnDestroy {
 
-  public clientes;
+  public pedidos;
 
-  public rla = this.router.url === '/dashboard/clientes'? false : true;
+  public rla = this.router.url === '/dashboard/pedidos'? false : true;
 
   event$;
 
-  constructor(private dbService: dashboardService,
+  constructor(private dbSevice: dashboardService,
                private rutaActiva: ActivatedRoute,
                private router: Router) {
                 this.event$=
@@ -24,24 +24,25 @@ export default class ClientesPage implements OnInit, OnDestroy {
                       (event) => {
                         if(event instanceof NavigationStart) {
                           console.log(event.url);
-                          this.rla = event.url  === '/dashboard/clientes'? false : true;
+                          this.rla = event.url  === '/dashboard/pedidos'? false : true;
                         }
                       });
               }
 
 
   ngOnInit() {
-    this.getClientes();
+    this.getPedidos();
   }
 
   ngOnDestroy() {
     this.event$.unsubscribe();
   }
 
-  getClientes(){
-    this.dbService.getAll('customer')
+  getPedidos(){
+    this.dbSevice.getAll('cashorder')
     .subscribe(resp=>{
-       this.clientes = resp.clientes;
+       this.pedidos = resp.pedidos;
+       console.log(resp);
     });
 
  }

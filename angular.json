@@ -35,8 +35,12 @@
                       "src/global.scss",
                       "node_modules/primeicons/primeicons.css",
                       "node_modules/primeng/resources/themes/saga-orange/theme.css",
-                      "node_modules/primeng/resources/primeng.min.css"],
-            "scripts": [],
+                      "node_modules/primeng/resources/primeng.min.css",
+                      "node_modules/datatables.net-dt/css/jquery.dataTables.css"],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js"
+            ],
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,

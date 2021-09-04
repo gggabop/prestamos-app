@@ -1,19 +1,19 @@
 /* eslint-disable @angular-eslint/no-host-metadata-property */
 /* eslint-disable @typescript-eslint/naming-convention */
-import { dashboardService } from './../../dashboard-service.service';
+import { dashboardService } from '../../dashboard-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-add-cliente',
+  selector: 'app-add-pedido',
   host: {
     class:'w-full'
   },
-  templateUrl: './add-cliente.component.html',
-  styleUrls: ['./add-cliente.component.scss'],
+  templateUrl: './add-pedido.component.html',
+  styleUrls: ['./add-pedido.component.scss'],
 })
-export class AddClienteComponent implements OnInit {
+export class AddPedidoComponent implements OnInit {
 
   toast = Swal.mixin({
     toast: true,
@@ -28,30 +28,44 @@ export class AddClienteComponent implements OnInit {
   });
 
   addFrom: FormGroup = this.fb.group({
-    name_customer: ['', [Validators.required]],
-    cedula_customer: ['', [Validators.required]],
-    address_work_customer: ['', [Validators.required]],
-    address_home_customer: ['', [Validators.required]],
-    extra_address_customer: ['', [Validators.required]],
-    cellphone_customer: ['', [Validators.required]],
-    extra_cellphone_customer: ['', [Validators.required]]
+    amount_cash_order: ['', [Validators.required]],
+    fk_customer_id: ['', [Validators.required]]
   });
+
+
+
+  clientes = [];
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private dbService: dashboardService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getClientes();
+  }
+  getClientes(){
+    this.dbService.getAll('customer')
+    .subscribe(resp=>{
+       this.clientes = resp.clientes;
+       console.log(this.clientes);
+    });
+
+ }
+ eventChange(event){}
+
 
   add(){
-    this.dbService.add(this.addFrom.value, 'customer')
+    if (!this.addFrom.valid) {
+      console.log(this.addFrom.value);
+    }
+    this.dbService.add(this.addFrom.value, 'cashorder')
     .subscribe(resp=>{
       if(resp.message==='Ok'){
         this.toast.fire({
           icon: 'success',
-          title: 'Usuario agregado'
+          title: 'Registro Agregado'
         });
-        this.router.navigateByUrl('/dashboard/clientes');
+        this.router.navigateByUrl('/dashboard/pedidos');
         window.location.reload();
       }
     });

@@ -1,0 +1,47 @@
+<div class="bg-white dark:bg-gray-900 h-full w-full">
+  <!-- top componente pagina datos principal -->
+  <ion-button class="ion-margin" color="light" routerLink="/dashboard/pedidos" >Atras</ion-button>
+  <div class="sm:px-7 sm:pt-7 px-4 pt-4 flex flex-col w-full border-b border-gray-200 bg-white dark:bg-gray-900 dark:text-white dark:border-gray-800 sticky top-0">
+    <div class="flex w-full items-center">
+      <div class="flex items-center text-3xl text-gray-900 dark:text-white">
+        <img src="/assets/icon/user.png" class="w-12 mr-4 rounded-full" alt="profile" />
+        {{cliente.name_customer}}
+      </div>
+      <div class="ml-auto sm:flex hidden items-center justify-end">
+        <!-- <div class="text-right">
+          <div class="text-xs text-gray-400 dark:text-gray-400">Dinero Prestado:</div>
+          <div class="text-gray-900 text-lg dark:text-white"> {{montoPrestado}} </div>
+        </div> -->
+        <ion-fab-button  routerLink="/dashboard/pedidos/put/{{pedido[0]?.id}}" color="light" size="small">
+          <ion-icon name="create-outline"></ion-icon>
+       </ion-fab-button>
+
+        <ion-fab-button (click)="delete()" color="light" size="small">
+          <ion-icon name="trash-outline"></ion-icon>
+       </ion-fab-button>
+      </div>
+    </div>
+    <div class="flex items-center space-x-3 sm:mt-7 mt-4">
+      <a href="#" class="px-3 border-b-2 border-yellow-500 text-yellow-500 dark:text-white dark:border-white pb-1.5">Datos del pedido</a>
+    </div>
+  </div>
+  <!-- fin top componente pagina datos principal -->
+
+  <!-- inicio principal componente pagina datos principal  -->
+  <div class="sm:p-7 p-4">
+    <div class="flex w-full items-center mb-7">
+      <!-- div paginacion top -->
+
+      <!-- fin div paginacion top -->
+    </div>
+    <div class="w-full text-left">
+      <h3>Datos del pedido:</h3>
+      <p>Monto del pedido: {{ pedido.amount_cash_order }}</p>
+      <p>Estatus: {{ pedido.status_cash_order === 0 ? 'En proceso...' : '' }}{{pedido.status_cash_order === 1 ? 'Aceptado' : '' }}{{pedido.status_cash_order === 2 ? 'Cancelado' : '' }}</p>
+    </div>
+    <!-- footer -->
+
+    <!-- fin del footer -->
+  </div>
+  <!-- fin  principal componente pagina datos principal -->
+</div>

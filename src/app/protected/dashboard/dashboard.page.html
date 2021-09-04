@@ -1,55 +1,37 @@
+  <ion-app>
+    <ion-split-pane contentId="main-content">
+      <ion-menu contentId="main-content" type="overlay">
+        <ion-content>
+          <ion-list id="inbox-list">
+            <div class="flex items-center">
+            <img class="w-7 h-7 rounded-full" src="/assets/icon/user.png" alt="profile" />
+            <ion-list-header>{{ usuario.name }}</ion-list-header>
+            </div>
+            <ion-note>{{ usuario.email }}</ion-note>
+            <button class="h-8 px-3 rounded-md shadow text-white bg-yellow-500 ml-3" (click)="logout()">Salir</button>
+
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+
+          <ion-list id="labels-list">
+            <ion-list-header>Labels</ion-list-header>
+
+            <ion-item *ngFor="let label of labels" lines="none">
+              <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
+              <ion-label>{{ label }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+      <ion-router-outlet id="main-content"></ion-router-outlet>
+    </ion-split-pane>
+  </ion-app>
 
 
-<ion-content>
-  <div class="bg-gray-100 dark:bg-gray-900 dark:text-white text-gray-600 h-screen flex overflow-hidden text-sm">
-    <!-- Init SideBar -->
-    <div class="bg-white dark:bg-gray-900 dark:border-gray-800 w-44 flex-shrink-0 border-r border-gray-200 flex-col hidden sm:flex
-    md:relative md:translate-x-0">
-      <div class="h-16 text-yellow-500 flex items-center justify-center bg-yellow-100">
-        <img class="w-10 h-10" src="/assets/icon/favicon.png" alt="image/png">
-      </div>
-      <!-- botones -->
-      <div class="flex mx-auto flex-grow mt-4 flex-col text-gray-400 space-y-4">
-        <button routerLink="/dashboard/clientes" class="h-10 w-36 dark:bg-gray-700 dark:text-white rounded-md bg-yellow-100 text-yellow-500 flex items-center">
-          <ion-icon class="ml-2 h-5" name="home-outline" size="large"></ion-icon>
-          <p class="text-lg">Clientes</p>
-        </button>
-        <button class="h-10 w-36 dark:text-gray-500 rounded-md hover:bg-gray-100 flex items-center">
-          <ion-icon class="ml-2 h-5" name="people-outline" size="large"></ion-icon>
-          <p class="text-lg">Prestamos</p>
-        </button>
-      </div>
-    </div>
-    <!-- end of sidebar -->
-    <div class="flex-grow overflow-hidden h-full flex flex-col w-full">
-      <!-- Top barra -->
-      <div class="h-16 lg:flex w-full border-b border-gray-200 dark:border-gray-800 hidden px-10">
-        <!-- Componente de rutas top -->
-        <div class="flex h-full text-gray-600 dark:text-gray-400">
-          <a href="#" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Company</a>
-          <a href="#" class="cursor-pointer h-full border-b-2 border-yellow-500 text-yellow-500 dark:text-white dark:border-white inline-flex mr-8 items-center">Users</a>
-          <a href="#" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Expense Centres</a>
-          <a href="#" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center">Currency Exchange</a>
-        </div>
-        <!-- fin del componente rutas top -->
-        <!-- Componente de Usuario -->
-        <div class="ml-auto flex items-center space-x-7">
-          <button class="flex items-center">
-            <span class="relative flex-shrink-0">
-              <img class="w-7 h-7 rounded-full" src="/assets/icon/user.png" alt="profile" />
-              <span class="absolute right-0 -mb-0.5 bottom-0 w-2 h-2 rounded-full bg-green-500 border border-white dark:border-gray-900"></span>
-            </span>
-            <span class="ml-2">{{ usuario.name }}</span>
-          </button>
-          <button class="h-8 px-3 rounded-md shadow text-white bg-yellow-500" (click)="logout()">Salir</button>
-        </div>
-        <!-- Fin de componente de usuario -->
-      </div>
-      <!-- Barra top -->
-      <!-- inicio componente barra lateral pagina -->
-      <div class="flex-grow flex overflow-x-hidden h-full w-full bg-white">
-            <router-outlet></router-outlet>
-      </div>
-    </div>
-  </div>
-</ion-content>
+
+

@@ -1,7 +1,6 @@
 <div class="bg-white dark:bg-gray-900 h-full w-full">
   <!-- top componente pagina datos principal -->
-  <button routerLink="/dashboard/clientes">Atras</button>
-
+  <ion-button class="ion-margin" color="light" routerLink="/dashboard/clientes" >Atras</ion-button>
   <div class="sm:px-7 sm:pt-7 px-4 pt-4 flex flex-col w-full border-b border-gray-200 bg-white dark:bg-gray-900 dark:text-white dark:border-gray-800 sticky top-0">
     <div class="flex w-full items-center">
       <div class="flex items-center text-3xl text-gray-900 dark:text-white">
@@ -13,13 +12,13 @@
           <div class="text-xs text-gray-400 dark:text-gray-400">Dinero Prestado:</div>
           <div class="text-gray-900 text-lg dark:text-white"> {{montoPrestado}} </div>
         </div> -->
-        <button routerLink="/dashboard/clientes/put/{{cliente[0]?.id}}" class="w-8 h-8 ml-4 text-gray-400 shadow dark:text-gray-400 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700">
-          Actualizar
-        </button>
+        <ion-fab-button  routerLink="/dashboard/clientes/put/{{cliente[0]?.id}}" color="light" size="small">
+          <ion-icon name="create-outline"></ion-icon>
+       </ion-fab-button>
 
-        <button (click)="delete()" class="w-8 h-8 ml-4 text-gray-400 shadow dark:text-gray-400 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700">
-          Eliminar
-        </button>
+        <ion-fab-button (click)="delete()" color="light" size="small">
+          <ion-icon name="trash-outline"></ion-icon>
+       </ion-fab-button>
       </div>
     </div>
     <div class="flex items-center space-x-3 sm:mt-7 mt-4">

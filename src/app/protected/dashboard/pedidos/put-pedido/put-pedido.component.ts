@@ -1,19 +1,19 @@
 /* eslint-disable @angular-eslint/no-host-metadata-property */
 /* eslint-disable @typescript-eslint/naming-convention */
-import { dashboardService } from './../../dashboard-service.service';
+import { dashboardService } from '../../dashboard-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-put-cliente',
+  selector: 'app-put-pedido',
   host: {
     class:'w-full'
   },
-  templateUrl: './put-cliente.component.html',
-  styleUrls: ['./put-cliente.component.scss'],
+  templateUrl: './put-pedido.component.html',
+  styleUrls: ['./put-pedido.component.scss'],
 })
-export class PutClienteComponent implements OnInit {
+export class PutPedidoComponent implements OnInit {
 
 
   toast = Swal.mixin({
@@ -38,7 +38,7 @@ export class PutClienteComponent implements OnInit {
     extra_cellphone_customer: ['', [Validators.required]]
   });
 
-  cliente: any;
+  pedido: any;
 
 
   constructor(private fb: FormBuilder,
@@ -50,29 +50,29 @@ export class PutClienteComponent implements OnInit {
     this.dbService.get(this.rutaActiva.snapshot.params.id,'customer')
     .subscribe(resp=>{
       console.log(this.rutaActiva.snapshot.params.id);
-      console.log(resp.cliente);
+      console.log(resp.pedido);
        this.putFrom = this.fb.group({
-        name_customer: [resp.cliente[0].name_customer, [Validators.required]],
-        cedula_customer: [resp.cliente[0].cedula_customer, [Validators.required]],
-        address_work_customer: [resp.cliente[0].address_work_customer, [Validators.required]],
-        address_home_customer: [resp.cliente[0].address_home_customer, [Validators.required]],
-        extra_address_customer: [resp.cliente[0].extra_address_customer, [Validators.required]],
-        cellphone_customer: [resp.cliente[0].cellphone_customer, [Validators.required]],
-        extra_cellphone_customer: [resp.cliente[0].extra_cellphone_customer, [Validators.required]]
+        name_customer: [resp.pedido[0].name_customer, [Validators.required]],
+        cedula_customer: [resp.pedido[0].cedula_customer, [Validators.required]],
+        address_work_customer: [resp.pedido[0].address_work_customer, [Validators.required]],
+        address_home_customer: [resp.pedido[0].address_home_customer, [Validators.required]],
+        extra_address_customer: [resp.pedido[0].extra_address_customer, [Validators.required]],
+        cellphone_customer: [resp.pedido[0].cellphone_customer, [Validators.required]],
+        extra_cellphone_customer: [resp.pedido[0].extra_cellphone_customer, [Validators.required]]
       });
     });
   }
 
 
   put(){
-    this.dbService.put(this.putFrom.value, 'customer',this.rutaActiva.snapshot.params.id)
+    this.dbService.put(this.putFrom.value, 'cashorder',this.rutaActiva.snapshot.params.id)
     .subscribe(resp=>{
       if(resp.message==='Ok'){
         this.toast.fire({
           icon: 'success',
           title: 'Usuario Actualizado'
         });
-        this.router.navigateByUrl('/dashboard/clientes');
+        this.router.navigateByUrl('/dashboard/pedidos');
         window.location.reload();
       }
     });
