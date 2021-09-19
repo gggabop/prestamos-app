@@ -1,66 +1,47 @@
-<ion-button class="ion-margin" color="light" routerLink="/dashboard/clientes" >Atras</ion-button>
-<form  [formGroup]="putFrom" (ngSubmit)="put()" class="m-10 w-full max-w-lg">
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-        Nombre del cliente
-      </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text"
-      formControlName="name_customer">
-    </div>
-    <div class="w-full md:w-1/2 px-3">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-        Cedula del cliente
-      </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text"
-      formControlName="cedula_customer">
-    </div>
-  </div>
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-        Direccion de trabajo
-      </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="text"
-      formControlName="address_work_customer">
-    </div>
-  </div>
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-        Direccion de domicilio
-      </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="text"
-      formControlName="address_home_customer">
-    </div>
-  </div>
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-        Direccion extra
-      </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="text"
-      formControlName="extra_address_customer">
-    </div>
-  </div>
-  <div class="flex flex-wrap -mx-3 mb-2">
-    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-        Telefono
-      </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text"
-      formControlName="cellphone_customer">
+<ion-content class="flex overflow-x-hidden h-full w-full" color="light">
+
+  <form [formGroup]="putFrom" (ngSubmit)="put()" class="ion-margin">
+
+    <div class="flex justify-between">
+      <ion-button class="ion-margin" color="light" routerLink="/dashboard/clientes/show/{{cliente}}" >Atras</ion-button>
+      <ion-button class="ion-margin" type="submit">
+        Actualizar
+      </ion-button>
     </div>
 
-    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
-        Telefono extra
-      </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text"
-      formControlName="extra_cellphone_customer">
-    </div>
-  </div>
-  <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-    Actualizar
-  </button>
-</form>
+      <ion-item>
+        <ion-label position="floating">Nombre del cliente</ion-label>
+        <ion-input formControlName="name_customer" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Cedula del cliente</ion-label>
+        <ion-input formControlName="cedula_customer" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Direccion de trabajo</ion-label>
+        <ion-textarea cols="50" formControlName="address_work_customer"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Direccion de domicilio</ion-label>
+        <ion-textarea cols="50" formControlName="address_home_customer"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Direccion extra</ion-label>
+        <ion-textarea cols="50" formControlName="extra_address_customer"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Telefono</ion-label>
+        <ion-input type="number" formControlName="cellphone_customer" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Telefono extra</ion-label>
+        <ion-input type="number" formControlName="extra_cellphone_customer" ></ion-input>
+      </ion-item>
+  </form>
+  </ion-content>

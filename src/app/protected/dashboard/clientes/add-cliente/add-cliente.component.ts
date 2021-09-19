@@ -44,6 +44,13 @@ export class AddClienteComponent implements OnInit {
   ngOnInit() {}
 
   add(){
+    if(!this.addFrom.valid){
+      this.toast.fire({
+        icon: 'warning',
+        title: 'Datos Ingresados - Invalido y/o vacios'
+      });
+      return;
+    }
     this.dbService.add(this.addFrom.value, 'customer')
     .subscribe(resp=>{
       if(resp.message==='Ok'){

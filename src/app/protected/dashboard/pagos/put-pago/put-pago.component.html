@@ -1,0 +1,39 @@
+<ion-content class="flex overflow-x-hidden h-full w-full" color="light">
+
+  <form [formGroup]="putFrom" (ngSubmit)="put()" class="ion-margin">
+    <div class="flex justify-between">
+      <ion-button class="ion-margin" color="light" routerLink="/dashboard/pagos/show/{{pago}}" >Atras</ion-button>
+      <ion-button class="ion-margin" type="submit">
+        Actualizar
+      </ion-button>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Monto</ion-label>
+      <ion-input type="number" formControlName="amount_payment" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Prestamo <pre>(Si modifica este campo, actualice el serial manualmente!)</pre> </ion-label>
+      <ion-select formControlName="fk_id_loan" (change)="changeCustomer()" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="brown">Selecciona...</ion-select-option>
+        <ion-select-option *ngFor="let prestamo of prestamos" [value]="prestamo.id">prestamo #{{prestamo.id}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime formControlName="date_payment" display-format="YYYY-MM-DD"></ion-datetime>
+    </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Serial</ion-label>
+        <ion-input formControlName="serial_payment" ></ion-input>
+      </ion-item>
+
+  </form>
+  </ion-content>
+
+
+

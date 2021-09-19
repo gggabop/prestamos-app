@@ -51,6 +51,7 @@ export class PutClienteComponent implements OnInit {
     .subscribe(resp=>{
       console.log(this.rutaActiva.snapshot.params.id);
       console.log(resp.cliente);
+       this.cliente = resp.cliente[0].id;
        this.putFrom = this.fb.group({
         name_customer: [resp.cliente[0].name_customer, [Validators.required]],
         cedula_customer: [resp.cliente[0].cedula_customer, [Validators.required]],
@@ -65,6 +66,13 @@ export class PutClienteComponent implements OnInit {
 
 
   put(){
+    if(!this.putFrom.valid){
+      this.toast.fire({
+        icon: 'warning',
+        title: 'Datos Ingresados - Invalido y/o vacios'
+      });
+      return;
+    }
     this.dbService.put(this.putFrom.value, 'customer',this.rutaActiva.snapshot.params.id)
     .subscribe(resp=>{
       if(resp.message==='Ok'){

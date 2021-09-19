@@ -1,27 +1,30 @@
+<ion-content class="flex overflow-x-hidden h-full w-full" color="light">
 
-
-<ion-button class="ion-margin" color="light" routerLink="/dashboard/pedidos">Atras</ion-button>
-<form  [formGroup]="addFrom" (ngSubmit)="add()" class="m-10 w-full max-w-lg">
-  <div class="flex flex-wrap mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-        Monto
-      </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="number"
-      formControlName="amount_cash_order">
+  <form [formGroup]="addFrom" (ngSubmit)="add()" class="ion-margin">
+    <div class="flex justify-between">
+      <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/pedidos" >Atras</ion-button>
+      <ion-button class="ion-margin" type="submit">
+        Agregar
+      </ion-button>
     </div>
-    <div class="w-full md:w-1/2 px-3">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-        Cliente
-      </label>
-      <select multiple placeholder="seleccion un cliente" formControlName="fk_id_customer" id="" class="block w-full bg-gray-200 text-gray-700 borde py-3 px-4 mb-3 leading-tight focus:outline-none">
-         <option *ngFor="let cliente of clientes" [ngValue]="cliente.id" (change)="eventChange($event)">{{cliente.name_customer}}</option>
-      </select>
-    </div>
-  </div>
 
-  <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-    Agregar
-  </button>
-</form>
+    <ion-item>
+      <ion-label position="floating">Monto</ion-label>
+      <ion-input type="number" formControlName="amount_cash_order" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cliente</ion-label>
+      <ion-select formControlName="fk_customer_id" (ionChange)="changeCustomer()" okText="Okay" cancelText="Dismiss">
+        <ion-select-option >Selecciona...</ion-select-option>
+        <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.id">{{cliente.name_customer}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </form>
+  </ion-content>
+
+
+
 

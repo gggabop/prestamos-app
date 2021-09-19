@@ -1,13 +1,13 @@
 <div class="bg-white dark:bg-gray-900 h-full w-full">
   <!-- top componente pagina datos principal -->
-  <ion-button class="ion-margin" color="light" routerLink="/dashboard/clientes" >Atras</ion-button>
+  <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/clientes" >Atras</ion-button>
   <div class="sm:px-7 sm:pt-7 px-4 pt-4 flex flex-col w-full border-b border-gray-200 bg-white dark:bg-gray-900 dark:text-white dark:border-gray-800 sticky top-0">
     <div class="flex w-full items-center">
       <div class="flex items-center text-3xl text-gray-900 dark:text-white">
         <img src="/assets/icon/user.png" class="w-12 mr-4 rounded-full" alt="profile" />
         {{cliente[0]?.name_customer}}
       </div>
-      <div class="ml-auto sm:flex hidden items-center justify-end">
+      <div class="ml-auto sm:flex items-center justify-end">
         <!-- <div class="text-right">
           <div class="text-xs text-gray-400 dark:text-gray-400">Dinero Prestado:</div>
           <div class="text-gray-900 text-lg dark:text-white"> {{montoPrestado}} </div>
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="flex items-center space-x-3 sm:mt-7 mt-4">
-      <a href="#" class="px-3 border-b-2 border-yellow-500 text-yellow-500 dark:text-white dark:border-white pb-1.5">Activities</a>
+      <a href="#" class="px-3 border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white pb-1.5">Prestamos</a>
     </div>
   </div>
   <!-- fin top componente pagina datos principal -->
@@ -30,7 +30,7 @@
   <div class="sm:p-7 p-4">
     <div class="flex w-full items-center mb-7">
       <!-- div paginacion top -->
-      <div class="ml-auto text-gray-500 text-xs sm:inline-flex hidden items-center">
+      <!-- <div class="ml-auto text-gray-500 text-xs sm:inline-flex hidden items-center">
         <span class="mr-3">Page 2 of 4</span>
         <button class="inline-flex mr-2 items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 dark:border-gray-800 leading-none py-0">
           <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -42,7 +42,7 @@
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>
-      </div>
+      </div> -->
       <!-- fin div paginacion top -->
     </div>
     <table class="w-full text-left">
@@ -74,13 +74,9 @@
               <div class="sm:flex hidden flex-col">
                  {{ prestamo.interest_rate_loan }}%
               </div>
-              <button class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
-                <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="1"></circle>
-                  <circle cx="19" cy="12" r="1"></circle>
-                  <circle cx="5" cy="12" r="1"></circle>
-                </svg>
-              </button>
+              <ion-button fill="clear" class="inline-flex items-center justify-center text-gray-400 ml-auto">
+                <a routerLink="/dashboard/prestamos/show/{{prestamo.id}}">Ir al prestamo</a>
+              </ion-button>
             </div>
           </td>
         </tr>
@@ -88,7 +84,7 @@
       </tbody>
     </table>
     <!-- footer -->
-    <div class="flex w-full mt-5 space-x-2 justify-end">
+    <!-- <div class="flex w-full mt-5 space-x-2 justify-end">
       <button class="inline-flex items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 dark:border-gray-800 leading-none">
         <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="15 18 9 12 15 6"></polyline>
@@ -102,7 +98,7 @@
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </button>
-    </div>
+    </div> -->
     <!-- fin del footer -->
   </div>
   <!-- fin  principal componente pagina datos principal -->

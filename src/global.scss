@@ -11,6 +11,7 @@
 
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 /* Basic CSS for apps built with Ionic */
 @import "~@ionic/angular/css/normalize.css";
@@ -32,8 +33,27 @@
   color: #AD8927;
 }
 .colorBGadminlogin{
-  background-color: #AD8927;
+  background-image: url("https://images.unsplash.com/photo-1587593692659-38c32c496642?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=375&q=80");
 }
 .w-fulled{
   width: 165%;
+}
+*{
+  font-family: 'Quicksand', sans-serif !important;
+}
+:root {
+  --ion-color-gold: #F3F4F6;
+  --ion-color-gold-rgb: 255, 215, 0;
+  --ion-color-gold-contrast: #000000;
+  --ion-color-gold-contrast-rgb: 0, 0, 0;
+  --ion-color-gold-shade: #F3F4F6;
+  --ion-color-gold-tint: #F3F4F6;
+}
+.ion-color-gold {
+  --ion-color-base: var(--ion-color-gold) !important;
+  --ion-color-base-rgb: var(--ion-color-gold-rgb) !important;
+  --ion-color-contrast: var(--ion-color-gold-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-gold-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-gold-shade) !important;
+  --ion-color-tint: var(--ion-color-gold-tint) !important;
 }

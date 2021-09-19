@@ -21,7 +21,7 @@
 
     <div *ngFor="let pedido of pedidos" class="space-y-4 mt-3">
       <!-- inicio componente datos card -->
-      <ion-item routerLink="/dashboard/pedidos/show/{{pedido.id}}" routerLinkActive #cla="routerLinkActive" (click)="onClick()" class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow-lg relative ring-1 ring-gray-100 focus:ring-yellow-500 focus:outline-none">
+      <button routerLink="/dashboard/pedidos/show/{{pedido.id}}" routerLinkActive #cla="routerLinkActive" (click)="onClick()" class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow-lg relative ring-1 ring-gray-100 focus:ring-blue-500 focus:outline-none">
         <ion-icon name="alert-circle-outline" size="small"></ion-icon>
         <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
           {{'numero de pedido - '+pedido.id}}
@@ -30,7 +30,7 @@
           <!-- <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Sales</div> -->
           <div class="ml-auto text-xs text-gray-500">Monto: {{pedido.amount_cash_order}}</div>
         </div>
-      </ion-item>
+      </button>
       <!-- final componente datos card -->
     </div>
   </div>

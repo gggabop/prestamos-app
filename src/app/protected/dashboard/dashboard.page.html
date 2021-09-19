@@ -1,31 +1,25 @@
   <ion-app>
     <ion-split-pane contentId="main-content">
-      <ion-menu contentId="main-content" type="overlay">
-        <ion-content>
-          <ion-list id="inbox-list">
+      <ion-menu class="lg:w-1/5 bg-gray-100" contentId="main-content" type="overlay">
+        <ion-content color="gold">
+          <ion-list style="padding: 0px !important;" id="inbox-list" class="bg-gray-100">
             <div class="flex items-center">
             <img class="w-7 h-7 rounded-full" src="/assets/icon/user.png" alt="profile" />
             <ion-list-header>{{ usuario.name }}</ion-list-header>
             </div>
-            <ion-note>{{ usuario.email }}</ion-note>
-            <button class="h-8 px-3 rounded-md shadow text-white bg-yellow-500 ml-3" (click)="logout()">Salir</button>
-
-            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-note style="margin-bottom: 2px !important;">{{ usuario.email }}</ion-note>
+            <hr>
+            <ion-menu-toggle color="gold" auto-hide="false" *ngFor="let p of appPages; let i = index">
+              <ion-item color="light" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
-
-          <ion-list id="labels-list">
-            <ion-list-header>Labels</ion-list-header>
-
-            <ion-item *ngFor="let label of labels" lines="none">
-              <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-              <ion-label>{{ label }}</ion-label>
-            </ion-item>
-          </ion-list>
+          <div class="mb-5 bg-gray-100">
+            <img src="/assets/img/logo.png" alt="">
+          </div>
+          <ion-button expand="block" class="h-8 rounded-md shadow text-white" (click)="logout()"><ion-icon name="arrow-undo-circle-outline" class="mr-2"></ion-icon> Salir</ion-button>
         </ion-content>
       </ion-menu>
       <ion-router-outlet id="main-content"></ion-router-outlet>

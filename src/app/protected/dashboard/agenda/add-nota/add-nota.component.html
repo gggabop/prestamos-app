@@ -1,0 +1,47 @@
+<ion-content class="flex overflow-x-hidden h-full w-full" color="light">
+
+  <form [formGroup]="addFrom" (ngSubmit)="add()" class="ion-margin">
+    <div class="flex justify-between">
+      <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/agenda" >Atras</ion-button>
+      <ion-button class="ion-margin" type="submit">
+        Agregar
+      </ion-button>
+    </div>
+
+
+    <ion-item>
+      <ion-label>Cliente</ion-label>
+      <ion-select formControlName="id_fk_customer" (ionChange)="changeCustomer()" okText="Okay" cancelText="Dismiss">
+        <ion-select-option >Selecciona...</ion-select-option>
+        <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.id">{{cliente.name_customer}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Prestamo</ion-label>
+      <ion-select formControlName="id_fk_loan" (change)="changeCustomer()" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="brown">Selecciona...</ion-select-option>
+        <ion-select-option *ngFor="let prestamo of prestamos" [value]="prestamo.id">prestamo numero: #{{prestamo.id}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Nota</ion-label>
+        <ion-input formControlName="note" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tipo</ion-label>
+        <ion-select formControlName="type_note" (change)="changeCustomer()" okText="Okay" cancelText="Dismiss">
+          <ion-select-option value="brown">Selecciona...</ion-select-option>
+          <ion-select-option [value]="1">Precaucion</ion-select-option>
+        <ion-select-option [value]="2">Urgente</ion-select-option>
+        <ion-select-option [value]="3">Riesgo</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+  </form>
+  </ion-content>
+

@@ -21,7 +21,7 @@
 
     <div *ngFor="let cliente of clientes" class="space-y-4 mt-3">
       <!-- inicio componente datos card -->
-      <ion-item routerLink="/dashboard/clientes/show/{{cliente.id}}" routerLinkActive #cla="routerLinkActive" (click)="onClick()" class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow-lg relative ring-1 ring-gray-100 focus:ring-yellow-500 focus:outline-none">
+      <button routerLink="/dashboard/clientes/show/{{cliente.id}}" routerLinkActive #cla="routerLinkActive" (click)="onClick()" class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow-lg relative ring-1 ring-gray-100 focus:ring-blue-500 focus:outline-none">
         <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
           <img src="/assets/icon/user.png" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
           {{cliente.name_customer}}
@@ -30,7 +30,7 @@
           <!-- <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Sales</div> -->
           <div class="ml-auto text-xs text-gray-500">V-{{cliente.cedula_customer}}</div>
         </div>
-      </ion-item>
+      </button>
       <!-- final componente datos card -->
     </div>
   </div>

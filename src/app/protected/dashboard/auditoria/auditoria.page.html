@@ -1,8 +1,15 @@
 <ion-content>
-  <table class="w-full text-left">
-    <thead>
-      <tr class="text-gray-400">
-        <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Descripcion</th>
+  <div class="container mx-auto px-4 sm:px-8">
+    <div>
+      <h2 class="text-2xl font-semibold leading-tight my-10">Auditorias</h2>
+    </div>
+    <div
+        class="inline-block min-w-full shadow-md rounded-lg overflow-hidden"
+      >
+  <table class="w-full table-auto text-left min-w-full leading-normal">
+    <thead class="bg-gray-300">
+      <tr>
+        <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800 mt-4">Descripcion</th>
         <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Usuario</th>
         <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800 hidden md:table-cell">Accion</th>
       </tr>
@@ -20,7 +27,7 @@
         <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
           <div class="flex items-center">
             <div class="sm:flex hidden flex-col">
-               {{ auditoria.action_aud }}%
+               {{ auditoria.action_aud }}
             </div>
             <button class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
               <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -35,4 +42,6 @@
 
     </tbody>
   </table>
+</div>
+</div>
 </ion-content>

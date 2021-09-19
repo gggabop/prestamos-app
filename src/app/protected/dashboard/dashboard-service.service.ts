@@ -90,4 +90,16 @@ export class dashboardService {
       })
     );
   }
+  addPrestamo(id,ruta){
+    const url = `${this.baseUrl}/${ruta}/${id}`;
+    const headers = new HttpHeaders()
+    .set('Authorization','Bearer '+localStorage.getItem('access_token')||'');
+    return this.http.get<any>(url, {headers}).pipe(
+      tap(resp=>{
+        if(resp){
+          return resp;
+        }
+      })
+    );
+  }
 }

@@ -1,0 +1,43 @@
+<ion-content class="flex overflow-x-hidden h-full w-full" color="light">
+
+  <form [formGroup]="putFrom" (ngSubmit)="put()" class="ion-margin">
+    <div class="flex justify-between">
+      <ion-button class="ion-margin" color="light" routerLink="/dashboard/prestamos/show/{{prestamo}}" >Atras</ion-button>
+      <ion-button class="ion-margin" type="submit">
+        Actualizar
+      </ion-button>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Monto</ion-label>
+      <ion-input type="number" formControlName="amount_loan" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cliente</ion-label>
+      <ion-select formControlName="fk_id_cliente" (ionChange)="changeCustomer()" okText="Okay" cancelText="Dismiss">
+        <ion-select-option >Selecciona...</ion-select-option>
+        <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.id">{{cliente.name_customer}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha de inicio prestamo</ion-label>
+      <ion-datetime formControlName="date_start_loan" display-format="YYYY-MM-DD"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha de inicio de pagos</ion-label>
+      <ion-datetime formControlName="date_pay_loan" display-format="YYYY-MM-DD"></ion-datetime>
+    </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Tasa de interes (%)</ion-label>
+        <ion-input type="number" formControlName="interest_rate_loan" ></ion-input>
+      </ion-item>
+
+  </form>
+  </ion-content>
+
+

@@ -87,6 +87,40 @@ export class ShowPedidoComponent implements OnInit {
       }
     });
   }
+  aceptar(){Swal.fire({
+    title: '¿Quiere aceptar este pedido?',
+    text: 'No puedes revertir esto',
+    icon: 'warning',
+    // imageUrl: 'https://i.pinimg.com/564x/ac/d4/fb/acd4fb9f575c28020064ba55664cfada.jpg',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {this.dbService.addPrestamo(this.rutaActiva.snapshot.params.id, 'cashorderAdd')
+    .subscribe(resp=>{
+      if(resp.message==='Ok'){
+        this.toast.fire({
+          icon: 'success',
+          title: 'Usuario Actualizado'
+        });
+        Swal.fire(
+          'Eliminado!',
+          'El registro ha sido eliminado',
+          'success'
+        );
+        this.router.navigateByUrl('/dashboard/pedidos');
+        delay(3000);
+        window.location.assign('/dashboard/pedidos');
+      }
+    });
+    } else if (result.isDenied) {
+      Swal.fire('Changes are not saved', '', 'info');
+    }
+  });
+}
 
 
 

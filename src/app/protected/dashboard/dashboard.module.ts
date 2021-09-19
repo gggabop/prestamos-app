@@ -1,3 +1,4 @@
+import { InicioComponent } from './Inicio/inicio.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +18,6 @@ import { DataTablesModule } from 'angular-datatables';
     DashboardPageRoutingModule,
     DataTablesModule
   ],
-  declarations: [DashboardPage]
+  declarations: [DashboardPage,InicioComponent]
 })
 export class DashboardPageModule {}

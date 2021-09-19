@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { parseJSON } from 'jquery';
 @Component({
   selector: 'app-add-pedido',
   host: {
@@ -32,8 +33,6 @@ export class AddPedidoComponent implements OnInit {
     fk_customer_id: ['', [Validators.required]]
   });
 
-
-
   clientes = [];
 
   constructor(private fb: FormBuilder,
@@ -43,6 +42,15 @@ export class AddPedidoComponent implements OnInit {
   ngOnInit() {
     this.getClientes();
   }
+
+  get customerName() {
+    return this.addFrom.get('fk_customer_id');
+  }
+
+  changeCustomer(){
+    console.log(event);
+  }
+
   getClientes(){
     this.dbService.getAll('customer')
     .subscribe(resp=>{
@@ -51,13 +59,22 @@ export class AddPedidoComponent implements OnInit {
     });
 
  }
- eventChange(event){}
 
 
   add(){
-    if (!this.addFrom.valid) {
-      console.log(this.addFrom.value);
+    if(!this.addFrom.valid){
+      this.toast.fire({
+        icon: 'warning',
+        title: 'Datos Ingresados - Invalido y/o vacios'
+      });
+      return;
     }
+     const cliente = JSON.parse(this.customerName.value);
+     const monto = this.addFrom.get('amount_cash_order').value;
+     this.addFrom = this.fb.group({
+      fk_customer_id: [cliente, [Validators.required]],
+      amount_cash_order: [monto, [Validators.required]],
+     });
     this.dbService.add(this.addFrom.value, 'cashorder')
     .subscribe(resp=>{
       if(resp.message==='Ok'){

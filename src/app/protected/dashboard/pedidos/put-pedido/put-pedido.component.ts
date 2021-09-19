@@ -28,14 +28,11 @@ export class PutPedidoComponent implements OnInit {
     }
   });
 
+  clientes = [];
+
   putFrom: FormGroup = this.fb.group({
-    name_customer: ['', [Validators.required]],
-    cedula_customer: ['', [Validators.required]],
-    address_work_customer: ['', [Validators.required]],
-    address_home_customer: ['', [Validators.required]],
-    extra_address_customer: ['', [Validators.required]],
-    cellphone_customer: ['', [Validators.required]],
-    extra_cellphone_customer: ['', [Validators.required]]
+    amount_cash_order: ['', [Validators.required]],
+    fk_customer_id: ['', [Validators.required]]
   });
 
   pedido: any;
@@ -44,27 +41,49 @@ export class PutPedidoComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private router: Router,
               private dbService: dashboardService,
-              private rutaActiva: ActivatedRoute,) { }
+              private rutaActiva: ActivatedRoute) { }
 
   ngOnInit() {
-    this.dbService.get(this.rutaActiva.snapshot.params.id,'customer')
+    this.dbService.get(this.rutaActiva.snapshot.params.id,'cashorder')
     .subscribe(resp=>{
+      this.pedido = resp.pedido.id;
       console.log(this.rutaActiva.snapshot.params.id);
       console.log(resp.pedido);
        this.putFrom = this.fb.group({
-        name_customer: [resp.pedido[0].name_customer, [Validators.required]],
-        cedula_customer: [resp.pedido[0].cedula_customer, [Validators.required]],
-        address_work_customer: [resp.pedido[0].address_work_customer, [Validators.required]],
-        address_home_customer: [resp.pedido[0].address_home_customer, [Validators.required]],
-        extra_address_customer: [resp.pedido[0].extra_address_customer, [Validators.required]],
-        cellphone_customer: [resp.pedido[0].cellphone_customer, [Validators.required]],
-        extra_cellphone_customer: [resp.pedido[0].extra_cellphone_customer, [Validators.required]]
+        amount_cash_order: [resp.pedido.amount_cash_order, [Validators.required]],
+        fk_customer_id: [resp.pedido.fk_customer_id, [Validators.required]]
       });
     });
+    this.dbService.getAll('customer')
+    .subscribe(resp=>{
+      this.clientes = resp.clientes;
+    });
+  }
+
+  get customerName() {
+    return this.putFrom.get('fk_customer_id');
+  }
+
+  changeCustomer(){
+    console.log(event);
   }
 
 
   put(){
+    if(!this.putFrom.valid){
+      this.toast.fire({
+        icon: 'warning',
+        title: 'Datos Ingresados - Invalido y/o vacios'
+      });
+      return;
+    }
+    const cliente = JSON.parse(this.customerName.value);
+     const monto = this.putFrom.get('amount_cash_order').value;
+     this.putFrom = this.fb.group({
+      fk_customer_id: [cliente, [Validators.required]],
+      amount_cash_order: [monto, [Validators.required]],
+     });
+    //  console.log(this.putFrom.value);
     this.dbService.put(this.putFrom.value, 'cashorder',this.rutaActiva.snapshot.params.id)
     .subscribe(resp=>{
       if(resp.message==='Ok'){
