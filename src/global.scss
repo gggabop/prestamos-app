@@ -33,7 +33,9 @@
   color: #AD8927;
 }
 .colorBGadminlogin{
-  background-image: url("https://images.unsplash.com/photo-1587593692659-38c32c496642?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=375&q=80");
+  background-image: url("/assets/img/fondo.jpeg");
+  background-size: cover;
+  position: relative;
 }
 .w-fulled{
   width: 165%;
@@ -57,3 +59,46 @@
   --ion-color-shade: var(--ion-color-gold-shade) !important;
   --ion-color-tint: var(--ion-color-gold-tint) !important;
 }
+
+:root {
+  --ion-color-light: #E5E7EB;
+  --ion-color-light-rgb: 255, 215, 0;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #E5E7EB;
+  --ion-color-light-tint: #E5E7EB;
+}
+.ion-color-light {
+  --ion-color-base: var(--ion-color-light) !important;
+  --ion-color-base-rgb: var(--ion-color-light-rgb) !important;
+  --ion-color-contrast: var(--ion-color-light-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-light-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-light-shade) !important;
+  --ion-color-tint: var(--ion-color-light-tint) !important;
+}
+
+button{
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgba(0, 0, 0, var(--tw-ring-opacity));
+}
+
+.superOverlay{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(74,74,74,.6);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonOverlay{
+  position: fixed;
+  z-index: 11;
+  display: flex;
+  align-items:flex-end;
+  justify-content: flex-end;
+}
+
+

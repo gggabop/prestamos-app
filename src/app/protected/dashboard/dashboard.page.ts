@@ -1,6 +1,6 @@
 import { AuthService } from './../../auth/auth.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -16,10 +16,23 @@ export class DashboardPage implements OnInit, OnDestroy {
 
   public appPages = [];
 
-
+  event$;
+  component;
   constructor(private router: Router,
     private authService: AuthService,
-    private menu: MenuController) { }
+    private menu: MenuController) {
+      this.appPages = [];
+      this.component = this.router.url.split('/')[2];
+      this.event$=
+                router.events
+                    .subscribe(
+                      (event) => {
+                        if(event instanceof NavigationStart) {
+                          console.log(event.url);
+                          this.component = event.url.split('/')[2];
+                        }
+                      });
+    }
 
   openFirst() {
     this.menu.enable(true, 'first');
@@ -27,14 +40,18 @@ export class DashboardPage implements OnInit, OnDestroy {
   }
 
   openEnd() {
-    this.menu.open('end');
+    this.menu.enable(true, 'end');
+    this.menu.toggle();
   }
 
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
   }
-
+  verifica() {
+    this.authService.nivel().
+      subscribe(arg => console.log('aaaa',arg));
+  }
   ngOnInit() {
     this.appPages = [];
     this.authService.nivel()
@@ -47,7 +64,7 @@ export class DashboardPage implements OnInit, OnDestroy {
             { title: 'Inicio', url: '/dashboard/inicio/', icon: 'home' },
             { title: 'Clientes', url: '/dashboard/clientes/', icon: 'people' },
             { title: 'Pedidos', url: '/dashboard/pedidos', icon: 'git-pull-request' },
-            { title: 'Prestamos', url: '/dashboard/prestamos', icon: 'ticket' },
+            { title: 'Préstamos', url: '/dashboard/prestamos', icon: 'ticket' },
             { title: 'Pagos', url: '/dashboard/pagos', icon: 'cash' },
             { title: 'Agenda', url: '/dashboard/agenda', icon: 'calendar' },
             { title: 'Usuarios', url: '/dashboard/usuarios', icon: 'people' },
@@ -59,7 +76,7 @@ export class DashboardPage implements OnInit, OnDestroy {
             { title: 'Inicio', url: '/dashboard/inicio/', icon: 'home' },
             { title: 'Clientes', url: '/dashboard/clientes/', icon: 'people' },
             { title: 'Pedidos', url: '/dashboard/pedidos', icon: 'git-pull-request' },
-            { title: 'Prestamos', url: '/dashboard/prestamos', icon: 'ticket' },
+            { title: 'Préstamos', url: '/dashboard/prestamos', icon: 'ticket' },
             { title: 'Pagos', url: '/dashboard/pagos', icon: 'cash' },
             { title: 'Agenda', url: '/dashboard/agenda', icon: 'calendar' },
           ];

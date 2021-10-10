@@ -76,12 +76,13 @@ export class ShowPrestamoComponent implements OnInit {
           });
           Swal.fire(
             'Eliminado!',
-            'El registro ha sido eliminado',
+            'El Préstamo ha sido eliminado',
             'success'
           );
           this.router.navigateByUrl('/dashboard/prestamos');
-          delay(3000);
-          window.location.assign('/dashboard/prestamos');
+          setTimeout(() => {
+            window.location.assign('/dashboard/prestamos');
+            }, 2000);
         }
       });
       } else if (result.isDenied) {

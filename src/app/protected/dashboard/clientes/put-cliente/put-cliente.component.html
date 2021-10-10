@@ -3,7 +3,7 @@
   <form [formGroup]="putFrom" (ngSubmit)="put()" class="ion-margin">
 
     <div class="flex justify-between">
-      <ion-button class="ion-margin" color="light" routerLink="/dashboard/clientes/show/{{cliente}}" >Atras</ion-button>
+      <ion-button class="ion-margin" color="light" routerLink="/dashboard/clientes/show/{{cliente}}" >Atrás</ion-button>
       <ion-button class="ion-margin" type="submit">
         Actualizar
       </ion-button>
@@ -15,33 +15,33 @@
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Cedula del cliente</ion-label>
-        <ion-input formControlName="cedula_customer" ></ion-input>
+        <ion-label position="floating">Cédula del cliente</ion-label>
+        <ion-input formControlName="cedula_customer" >V-</ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Direccion de trabajo</ion-label>
+        <ion-label position="floating">Dirección de trabajo</ion-label>
         <ion-textarea cols="50" formControlName="address_work_customer"></ion-textarea>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Direccion de domicilio</ion-label>
+        <ion-label position="floating">Dirección de domicilio</ion-label>
         <ion-textarea cols="50" formControlName="address_home_customer"></ion-textarea>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Direccion extra</ion-label>
+        <ion-label position="floating">Dirección extra</ion-label>
         <ion-textarea cols="50" formControlName="extra_address_customer"></ion-textarea>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Telefono</ion-label>
-        <ion-input type="number" formControlName="cellphone_customer" ></ion-input>
+        <ion-label position="floating">Teléfono</ion-label>
+        <ion-input type="number" formControlName="cellphone_customer" >0</ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Telefono extra</ion-label>
-        <ion-input type="number" formControlName="extra_cellphone_customer" ></ion-input>
+        <ion-label position="floating">Teléfono extra</ion-label>
+        <ion-input type="number" formControlName="extra_cellphone_customer" >0</ion-input>
       </ion-item>
   </form>
   </ion-content>

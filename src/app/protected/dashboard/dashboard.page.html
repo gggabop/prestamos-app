@@ -1,14 +1,22 @@
-  <ion-app>
-    <ion-split-pane contentId="main-content">
-      <ion-menu class="lg:w-1/5 bg-gray-100" contentId="main-content" type="overlay">
-        <ion-content color="gold">
-          <ion-list style="padding: 0px !important;" id="inbox-list" class="bg-gray-100">
-            <div class="flex items-center">
-            <img class="w-7 h-7 rounded-full" src="/assets/icon/user.png" alt="profile" />
-            <ion-list-header>{{ usuario.name }}</ion-list-header>
-            </div>
-            <ion-note style="margin-bottom: 2px !important;">{{ usuario.email }}</ion-note>
+  <ion-app color="light">
+    <ion-split-pane contentId="main-content" color="light">
+      
+      <ion-menu menuId="end" class="lg:w-1/5 bg-gray-200" contentId="main-content" type="overlay">
+        <ion-content color="light">
+          <ion-list style="padding: 0px !important;" id="inbox-list" class="bg-gray-200">
+            
+            
             <hr>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-subtitle><div class="flex items-center">
+                  <img class="w-7 h-7 rounded-full" src="/assets/icon/user.png" alt="profile" />
+                  <ion-list-header (click)="verifica()">{{ usuario.name }}</ion-list-header>
+                  </div></ion-card-subtitle>
+                <ion-card-title><ion-note style="margin-bottom: 2px !important;">{{ usuario.email }}</ion-note></ion-card-title>
+              </ion-card-header>
+              <hr>
+            </ion-card>
             <ion-menu-toggle color="gold" auto-hide="false" *ngFor="let p of appPages; let i = index">
               <ion-item color="light" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
@@ -16,13 +24,24 @@
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
-          <div class="mb-5 bg-gray-100">
+          <div class="mb-5">
             <img src="/assets/img/logo.png" alt="">
           </div>
           <ion-button expand="block" class="h-8 rounded-md shadow text-white" (click)="logout()"><ion-icon name="arrow-undo-circle-outline" class="mr-2"></ion-icon> Salir</ion-button>
         </ion-content>
       </ion-menu>
-      <ion-router-outlet id="main-content"></ion-router-outlet>
+      
+       
+        
+           <ion-button fill="clear" color="dark" (click)="openEnd()" class="buttonOverlay lg:hidden">
+             <ion-icon slot="icon-only" name="menu"></ion-icon>
+             <div class="ml-4">{{ component }}</div>
+           </ion-button>
+       
+       
+      
+      
+      <ion-router-outlet id="main-content" class="mt-10 lg:mt-0"></ion-router-outlet>
     </ion-split-pane>
   </ion-app>
 

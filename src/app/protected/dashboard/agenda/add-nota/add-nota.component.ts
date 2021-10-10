@@ -79,7 +79,7 @@ export class AddNotaComponent implements OnInit {
     if(!this.addFrom.valid){
       this.toast.fire({
         icon: 'warning',
-        title: 'Datos Ingresados - Invalido y/o vacios'
+        title: 'Datos Ingresados - Invalidos y/o vacios'
       });
       return;
     }
@@ -96,12 +96,21 @@ export class AddNotaComponent implements OnInit {
     this.dbService.add(this.addFrom.value, 'diary')
     .subscribe(resp=>{
       if(resp.message==='Ok'){
+        if(resp.errors){
+          console.log(resp.errors);
+          this.toast.fire({
+            icon: 'warning',
+            title: JSON.stringify(resp.errors).replace(/[.*+\-?^${}()|[\]\\]/g,' ')
+          });
+        }
         this.toast.fire({
           icon: 'success',
-          title: 'Registro Agregado'
+          title: 'Nota Agregada'
         });
         this.router.navigateByUrl('/dashboard/agenda');
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+          }, 2000);
       }
     });
   }

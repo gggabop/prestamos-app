@@ -10,11 +10,23 @@ import Swal from 'sweetalert2';
     class:'w-full justify-center',
   },
   templateUrl: './inicio.component.html',
+  styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
 
+
+  now: Date;
   constructor(){}
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.now = new Date();
+
+    setInterval(() => {
+
+      this.now = new Date();
+
+    }, 1000);
+  }
+
 
 }

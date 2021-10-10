@@ -26,7 +26,7 @@ export interface ClienteElement {
 export interface Prestamo {
   id:                      number;
   fk_id_cliente:           number;
-  fk_id_cashOrder:         null;
+  fk_id_cashorder:         null;
   status_loan:             null;
   amount_loan:             number;
   amount_rest_loan:        number;

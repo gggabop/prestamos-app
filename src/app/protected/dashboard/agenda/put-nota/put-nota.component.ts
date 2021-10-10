@@ -94,7 +94,7 @@ export class PutNotaComponent implements OnInit {
     if(!this.putFrom.valid){
       this.toast.fire({
         icon: 'warning',
-        title: 'Datos Ingresados - Invalido y/o vacios'
+        title: 'Datos Ingresados - Invalidos y/o vacios'
       });
       return;
     }
@@ -112,12 +112,21 @@ export class PutNotaComponent implements OnInit {
     this.dbService.put(this.putFrom.value, 'diary',this.rutaActiva.snapshot.params.id)
     .subscribe(resp=>{
       if(resp.message==='Ok'){
+        if(resp.errors){
+          console.log(resp.errors);
+          this.toast.fire({
+            icon: 'warning',
+            title: JSON.stringify(resp.errors).replace(/[.*+\-?^${}()|[\]\\]/g,' ')
+          });
+        }
         this.toast.fire({
           icon: 'success',
-          title: 'Usuario Actualizado'
+          title: 'Agenda Actualizada'
         });
         this.router.navigateByUrl('/dashboard/agenda');
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+          }, 2000);
       }
     });
   }

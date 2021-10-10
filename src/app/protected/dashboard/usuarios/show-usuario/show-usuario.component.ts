@@ -72,12 +72,13 @@ export class ShowUsuarioComponent implements OnInit {
           });
           Swal.fire(
             'Eliminado!',
-            'El registro ha sido eliminado',
+            'El usuario ha sido eliminado',
             'success'
           );
           this.router.navigateByUrl('/dashboard/usuarios');
-          delay(3000);
-          window.location.assign('/dashboard/usuarios');
+          setTimeout(() => {
+            window.location.assign('/dashboard/usuarios');
+            }, 2000);
         }
       });
       } else if (result.isDenied) {

@@ -75,12 +75,13 @@ export class ShowNotaComponent implements OnInit {
           });
           Swal.fire(
             'Eliminado!',
-            'El registro ha sido eliminado',
+            'La nota ha sido eliminada',
             'success'
           );
           this.router.navigateByUrl('/dashboard/agenda');
-          delay(3000);
-          window.location.assign('/dashboard/agenda');
+          setTimeout(() => {
+            window.location.assign('/dashboard/agenda');
+            }, 2000);
         }
       });
       } else if (result.isDenied) {

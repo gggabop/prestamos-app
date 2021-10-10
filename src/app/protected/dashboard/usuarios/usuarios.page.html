@@ -21,7 +21,7 @@
 
     <div *ngFor="let usuario of usuarios" class="space-y-4 mt-3">
       <!-- inicio componente datos card -->
-      <button routerLink="/dashboard/usuarios/show/{{usuario.id}}" routerLinkActive #cla="routerLinkActive" (click)="onClick()" class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow-lg relative ring-1 ring-gray-100 focus:ring-blue-500 focus:outline-none">
+      <button routerLink="/dashboard/usuarios/show/{{usuario.id}}" routerLinkActive #cla="routerLinkActive" (click)="onClick()" class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow-lg relative ring-1 ring-gray-200 focus:ring-blue-500 focus:outline-none">
         <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
           <img src="/assets/icon/user.png" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
           {{usuario.name}}

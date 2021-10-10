@@ -3,7 +3,7 @@
   <form [formGroup]="putFrom" (ngSubmit)="put()" class="ion-margin">
 
     <div class="flex justify-between">
-      <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/clientes" >Atras</ion-button>
+      <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/clientes" >Atrás</ion-button>
       <ion-button class="ion-margin" type="submit">
         Actualizar
       </ion-button>
@@ -31,7 +31,7 @@
 
       <ion-item>
         <ion-label>Tipo</ion-label>
-        <ion-select formControlName="level" (change)="changeCustomer()" okText="Okay" cancelText="Dismiss">
+        <ion-select formControlName="level" (change)="changeCustomer()" okText="Seleccionar" cancelText="Cancelar">
           <ion-select-option>Selecciona...</ion-select-option>
           <ion-select-option value="prestamista">Prestamista</ion-select-option>
         <ion-select-option value="secretaria">Secretaria</ion-select-option>

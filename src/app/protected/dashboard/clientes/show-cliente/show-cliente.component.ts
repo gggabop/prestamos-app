@@ -51,6 +51,7 @@ export class ShowClienteComponent implements OnInit {
   getCliente(id){
     this.dbService.get(id, 'customer')
     .subscribe(resp=>{
+      console.log(resp);
       this.cliente = resp.cliente;
       this.prestamos = resp.prestamos;
     });
@@ -73,16 +74,17 @@ export class ShowClienteComponent implements OnInit {
         if(resp.message==='Ok'){
           this.toast.fire({
             icon: 'success',
-            title: 'Usuario Actualizado'
+            title: 'Cliente Actualizado'
           });
           Swal.fire(
             'Eliminado!',
-            'El registro ha sido eliminado',
+            'El cliente ha sido eliminado',
             'success'
           );
           this.router.navigateByUrl('/dashboard/clientes');
-          delay(3000);
-          window.location.assign('/dashboard/clientes');
+          setTimeout(() => {
+            window.location.assign('/dashboard/clientes');
+            }, 2000);
         }
       });
       } else if (result.isDenied) {

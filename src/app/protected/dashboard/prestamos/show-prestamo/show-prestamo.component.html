@@ -1,6 +1,6 @@
 <div class="bg-white dark:bg-gray-900 h-full w-full">
   <!-- top componente pagina datos principal -->
-  <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/prestamos" >Atras</ion-button>
+  <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/prestamos" >Atrás</ion-button>
   <div class="sm:px-7 sm:pt-7 px-4 pt-4 flex flex-col w-full border-b border-gray-200 bg-white dark:bg-gray-900 dark:text-white dark:border-gray-800 sticky top-0">
     <div class="flex w-full items-center">
       <div class="flex items-center text-3xl text-gray-900 dark:text-white">
@@ -45,7 +45,7 @@
       </div> -->
       <!-- fin div paginacion top -->
     </div>
-    <table class="w-full text-left">
+    <table class="w-full text-left" *ngIf="pagos.length !== 0; else elseBlock">
       <thead>
         <tr class="text-gray-400">
           <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">#</th>
@@ -81,6 +81,17 @@
 
       </tbody>
     </table>
+    <ng-template #elseBlock> 
+      <ion-card >
+        <ion-card-header>
+          <ion-card-subtitle>Este préstamo no posee pagos</ion-card-subtitle>
+          <ion-card-title>¡Sin Pagos!</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Por favor, ingresa un pago para mostrar datos.
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
     <!-- footer -->
     <!-- <div class="flex w-full mt-5 space-x-2 justify-end">
       <button class="inline-flex items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 dark:border-gray-800 leading-none">

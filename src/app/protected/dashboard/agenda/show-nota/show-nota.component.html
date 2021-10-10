@@ -1,6 +1,6 @@
 <div class="bg-white dark:bg-gray-900 h-full w-full">
   <!-- top componente pagina datos principal -->
-  <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/agenda" >Atras</ion-button>
+  <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/agenda" >Atrás</ion-button>
   <div class="sm:px-7 sm:pt-7 px-4 pt-4 flex flex-col w-full border-b border-gray-200 bg-white dark:bg-gray-900 dark:text-white dark:border-gray-800 sticky top-0">
     <div class="flex w-full items-center">
       <div class="flex items-center text-3xl text-gray-900 dark:text-white">
@@ -43,7 +43,7 @@
         <div class="w-full text-left">
           <h1>Detalle de la nota: {{ nota.note }}</h1>
            <h1>Cliente: {{cliente.name_customer}} </h1>
-           <h1>Prestamo #: {{prestamo.id}}</h1>
+           <h1>Préstamo #: {{prestamo.id}}</h1>
            <h1>Fecha: {{ nota.created_at | date }}</h1>
           <div [ngSwitch]="nota.type_note">
             <h1 *ngSwitchCase="1">Tipo: Precaucion</h1>

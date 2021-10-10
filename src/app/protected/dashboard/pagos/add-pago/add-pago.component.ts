@@ -95,13 +95,22 @@ export class AddPagoComponent implements OnInit {
      });
     this.dbService.add(this.addFrom.value, 'payments')
     .subscribe(resp=>{
+      if(resp.errors){
+        console.log(resp.errors);
+        this.toast.fire({
+          icon: 'warning',
+          title: JSON.stringify(resp.errors).replace(/[.*+\-?^${}()|[\]\\]/g,' ')
+        });
+      }
       if(resp.message==='Ok'){
         this.toast.fire({
           icon: 'success',
-          title: 'Registro Agregado'
+          title: 'Pago Agregado'
         });
         this.router.navigateByUrl('/dashboard/pagos');
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+          }, 2000);;
       }
     });
   }

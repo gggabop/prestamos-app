@@ -74,12 +74,13 @@ export class ShowPagoComponent implements OnInit {
           });
           Swal.fire(
             'Eliminado!',
-            'El registro ha sido eliminado',
+            'El pago ha sido eliminado',
             'success'
           );
           this.router.navigateByUrl('/dashboard/pagos');
-          delay(3000);
-          window.location.assign('/dashboard/pagos');
+          setTimeout(() => {
+            window.location.assign('/dashboard/pagos');
+            }, 2000);
         }
       });
       } else if (result.isDenied) {

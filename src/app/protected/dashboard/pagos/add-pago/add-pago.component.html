@@ -2,7 +2,7 @@
 
   <form [formGroup]="addFrom" (ngSubmit)="add()" class="ion-margin">
     <div class="flex justify-between">
-      <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/pagos" >Atras</ion-button>
+      <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/pagos" >Atrás</ion-button>
       <ion-button class="ion-margin" type="submit">
         Agregar
       </ion-button>
@@ -14,10 +14,10 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Prestamo</ion-label>
-      <ion-select formControlName="fk_id_loan" (ionChange)="changeCustomer()" okText="Okay" cancelText="Dismiss">
+      <ion-label>Préstamo</ion-label>
+      <ion-select formControlName="fk_id_loan" (ionChange)="changeCustomer()" okText="Seleccionar" cancelText="Cancelar">
         <ion-select-option value="brown">Selecciona...</ion-select-option>
-        <ion-select-option *ngFor="let prestamo of prestamos" [value]="prestamo.id">prestamo #{{prestamo.id}}
+        <ion-select-option *ngFor="let prestamo of prestamos" [value]="prestamo.id">préstamo #{{prestamo.id}}
         </ion-select-option>
       </ion-select>
     </ion-item>

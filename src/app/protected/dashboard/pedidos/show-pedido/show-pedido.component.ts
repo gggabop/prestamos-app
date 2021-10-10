@@ -70,16 +70,17 @@ export class ShowPedidoComponent implements OnInit {
         if(resp.message==='Ok'){
           this.toast.fire({
             icon: 'success',
-            title: 'Usuario Actualizado'
+            title: 'Pedido Actualizado'
           });
           Swal.fire(
             'Eliminado!',
-            'El registro ha sido eliminado',
+            'El pedido ha sido eliminado',
             'success'
           );
           this.router.navigateByUrl('/dashboard/pedidos');
-          delay(3000);
-          window.location.assign('/dashboard/pedidos');
+          setTimeout(() => {
+            window.location.assign('/dashboard/pedidos');
+            }, 2000);
         }
       });
       } else if (result.isDenied) {
@@ -93,10 +94,13 @@ export class ShowPedidoComponent implements OnInit {
     icon: 'warning',
     // imageUrl: 'https://i.pinimg.com/564x/ac/d4/fb/acd4fb9f575c28020064ba55664cfada.jpg',
     showCancelButton: true,
+    showDenyButton: true,
     confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Aceptar',
     cancelButtonColor: '#d33',
     cancelButtonText: 'Cancelar',
-    confirmButtonText: 'Aceptar'
+    denyButtonColor: '#3035d4',
+    denyButtonText: 'Negar'
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {this.dbService.addPrestamo(this.rutaActiva.snapshot.params.id, 'cashorderAdd')
@@ -104,20 +108,30 @@ export class ShowPedidoComponent implements OnInit {
       if(resp.message==='Ok'){
         this.toast.fire({
           icon: 'success',
-          title: 'Usuario Actualizado'
+          title: 'Registro Actualizado'
         });
         Swal.fire(
-          'Eliminado!',
-          'El registro ha sido eliminado',
+          'Aceptado!',
+          'El pedido ha sido Aceptado',
           'success'
         );
         this.router.navigateByUrl('/dashboard/pedidos');
-        delay(3000);
-        window.location.assign('/dashboard/pedidos');
+        setTimeout(() => {
+          window.location.assign('/dashboard/pedidos');
+          }, 2000);
       }
     });
     } else if (result.isDenied) {
-      Swal.fire('Changes are not saved', '', 'info');
+      this.dbService.negarPrestamo(this.rutaActiva.snapshot.params.id, 'cashorderDeny')
+      .subscribe(resp=>{
+        if(resp.message==='Ok'){
+          Swal.fire('No se acepto el préstamo', '', 'info');
+          this.router.navigateByUrl('/dashboard/pedidos');
+        setTimeout(() => {
+          window.location.assign('/dashboard/pedidos');
+          }, 2000);
+        }
+      });
     }
   });
 }

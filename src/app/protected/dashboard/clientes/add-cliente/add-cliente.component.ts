@@ -34,7 +34,7 @@ export class AddClienteComponent implements OnInit {
     address_home_customer: ['', [Validators.required]],
     extra_address_customer: ['', [Validators.required]],
     cellphone_customer: ['', [Validators.required]],
-    extra_cellphone_customer: ['', [Validators.required]]
+    extra_cellphone_customer: ['', [Validators.required]],
   });
 
   constructor(private fb: FormBuilder,
@@ -47,19 +47,28 @@ export class AddClienteComponent implements OnInit {
     if(!this.addFrom.valid){
       this.toast.fire({
         icon: 'warning',
-        title: 'Datos Ingresados - Invalido y/o vacios'
+        title: 'Datos Ingresados - Invalidos y/o vacios'
       });
       return;
     }
     this.dbService.add(this.addFrom.value, 'customer')
     .subscribe(resp=>{
+      if(resp.errors){
+        this.toast.fire({
+          icon: 'warning',
+          title: resp.errors.cedula_customer ? 'Cedula del cliente ya existe en el sistema'
+          : JSON.stringify(resp.errors).replace(/[.*+\-?^${}()|[\]\\]/g,' ')
+        });
+      }
       if(resp.message==='Ok'){
         this.toast.fire({
           icon: 'success',
-          title: 'Usuario agregado'
+          title: 'Cliente Agregado'
         });
         this.router.navigateByUrl('/dashboard/clientes');
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+          }, 3000);;
       }
     });
   }

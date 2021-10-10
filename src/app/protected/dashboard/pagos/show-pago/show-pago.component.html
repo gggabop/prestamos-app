@@ -1,6 +1,6 @@
 <div class="bg-white dark:bg-gray-900 h-full w-full">
   <!-- top componente pagina datos principal -->
-  <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/pedidos" >Atras</ion-button>
+  <ion-button class="ion-margin lg:hidden" color="light" routerLink="/dashboard/pagos" >Atrás</ion-button>
   <div class="sm:px-7 sm:pt-7 px-4 pt-4 flex flex-col w-full border-b border-gray-200 bg-white dark:bg-gray-900 dark:text-white dark:border-gray-800 sticky top-0">
     <div class="flex w-full items-center">
       <div class="lg:flex items-center text-3xl text-gray-900 dark:text-white">
@@ -8,7 +8,7 @@
         {{pago.serial_payment}}
 
         <ion-button class="text-gray-700" routerLink="/dashboard/prestamos/show/{{pago.fk_id_loan}}" fill="clear">
-          Ir al prestamo
+          Ir al préstamo
         </ion-button>
       </div>
       <div class="ml-auto sm:flex items-center justify-end">

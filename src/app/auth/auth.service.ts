@@ -72,6 +72,9 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('access_token');
+    setTimeout(() => {
+          window.location.reload();
+          }, 2000);
   }
 
 }

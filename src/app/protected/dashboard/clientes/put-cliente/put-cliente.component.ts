@@ -69,19 +69,28 @@ export class PutClienteComponent implements OnInit {
     if(!this.putFrom.valid){
       this.toast.fire({
         icon: 'warning',
-        title: 'Datos Ingresados - Invalido y/o vacios'
+        title: 'Datos Ingresados - Invalidos y/o vacios'
       });
       return;
     }
     this.dbService.put(this.putFrom.value, 'customer',this.rutaActiva.snapshot.params.id)
     .subscribe(resp=>{
+      if(resp.errors){
+        this.toast.fire({
+          icon: 'warning',
+          title: resp.errors.cedula_customer ? 'Cedula del cliente ya existe en el sistema'
+          : JSON.stringify(resp.errors).replace(/[.*+\-?^${}()|[\]\\]/g,' ')
+        });
+      }
       if(resp.message==='Ok'){
         this.toast.fire({
           icon: 'success',
-          title: 'Usuario Actualizado'
+          title: 'Cliente Actualizado'
         });
         this.router.navigateByUrl('/dashboard/clientes');
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+          }, 2000);;
       }
     });
   }

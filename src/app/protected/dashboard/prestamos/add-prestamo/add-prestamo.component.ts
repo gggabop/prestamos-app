@@ -70,7 +70,7 @@ export class AddPrestamoComponent implements OnInit {
     if(!this.addFrom.valid){
       this.toast.fire({
         icon: 'warning',
-        title: 'Datos Ingresados - Invalido y/o vacios'
+        title: 'Datos Ingresados - Invalidos y/o vacios'
       });
       return;
     }
@@ -90,13 +90,22 @@ export class AddPrestamoComponent implements OnInit {
     });
     this.dbService.add(this.addFrom.value, 'loans')
     .subscribe(resp=>{
+      if(resp.errors){
+        console.log(resp.errors);
+        this.toast.fire({
+          icon: 'warning',
+          title: JSON.stringify(resp.errors).replace(/[.*+\-?^${}()|[\]\\]/g,' ')
+        });
+      }
       if(resp.message==='Ok'){
         this.toast.fire({
           icon: 'success',
-          title: 'Registro Agregado'
+          title: 'Prestamo Agregado'
         });
-        this.router.navigateByUrl('/dashboard/pedidos');
-        window.location.reload();
+        this.router.navigateByUrl('/dashboard/prestamos');
+        setTimeout(() => {
+          window.location.reload();
+          }, 3000);;
       }
     });
   }
